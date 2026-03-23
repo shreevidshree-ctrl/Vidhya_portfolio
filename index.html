@@ -19,6 +19,8 @@
       --accent: #7c3aed;
       --accent-2: #06b6d4;
       --accent-3: #ec4899;
+      --success: #22c55e;
+      --warning: #f59e0b;
       --shadow: 0 20px 60px rgba(0,0,0,0.35);
       --radius-xl: 28px;
       --radius-lg: 22px;
@@ -50,10 +52,11 @@
       background-size: 34px 34px;
       mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.12));
       pointer-events: none;
-      z-index: -1;
+      z-index: -2;
     }
 
     a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
     .container { width: min(92%, var(--max)); margin: 0 auto; }
     .section { padding: 92px 0; }
 
@@ -62,6 +65,39 @@
       border: 1px solid var(--line);
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
+    }
+
+    .floating-shape {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: .35;
+      pointer-events: none;
+      z-index: -1;
+      animation: floatBlob 8s ease-in-out infinite;
+    }
+    .shape-1 {
+      width: 130px;
+      height: 130px;
+      top: 18%;
+      left: 4%;
+      background: radial-gradient(circle, rgba(124,58,237,.65), transparent 70%);
+    }
+    .shape-2 {
+      width: 160px;
+      height: 160px;
+      top: 62%;
+      right: 4%;
+      background: radial-gradient(circle, rgba(6,182,212,.65), transparent 70%);
+      animation-duration: 10s;
+    }
+    .shape-3 {
+      width: 110px;
+      height: 110px;
+      bottom: 10%;
+      left: 12%;
+      background: radial-gradient(circle, rgba(236,72,153,.6), transparent 70%);
+      animation-duration: 9s;
     }
 
     .nav {
@@ -105,10 +141,11 @@
 
     .hero {
       padding: 54px 0 40px;
+      position: relative;
     }
     .hero-wrap {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 24px;
       align-items: stretch;
     }
@@ -156,11 +193,26 @@
       background-clip: text;
       color: transparent;
     }
+    .typing-line {
+      margin: 18px 0 8px;
+      font-size: 18px;
+      font-weight: 700;
+      min-height: 28px;
+      color: #dde4ff;
+    }
+    .typing-line .typing-text {
+      color: #8be9ff;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      animation: blink 0.9s infinite;
+    }
     .hero p {
       color: var(--muted);
       font-size: 17px;
       max-width: 650px;
-      margin: 18px 0 28px;
+      margin: 14px 0 28px;
     }
     .hero-actions {
       display: flex;
@@ -201,7 +253,9 @@
       border-radius: 18px;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
+      transition: .25s ease;
     }
+    .mini-card:hover { transform: translateY(-4px); }
     .mini-card h3 {
       margin: 0 0 6px;
       font-size: 24px;
@@ -216,7 +270,7 @@
       border-radius: 34px;
       padding: 26px;
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto auto 1fr auto;
       gap: 18px;
       position: relative;
       overflow: hidden;
@@ -231,24 +285,34 @@
       border-radius: 50%;
       pointer-events: none;
     }
-    .profile-badge {
+    .profile-photo-wrap {
+      position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 14px;
+      justify-content: center;
+      margin-bottom: 6px;
     }
-    .avatar {
-      width: 92px;
-      height: 92px;
-      border-radius: 26px;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 34px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 20px 40px rgba(0,0,0,.28);
+    .profile-photo-ring {
+      width: 210px;
+      height: 210px;
+      border-radius: 32px;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      animation: floatPhoto 5s ease-in-out infinite;
     }
-    .status {
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(124,58,237,.3), rgba(6,182,212,.2));
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .photo-badge {
+      position: absolute;
+      right: 14px;
+      bottom: 8px;
       padding: 10px 14px;
       border-radius: 999px;
       font-size: 12px;
@@ -256,15 +320,38 @@
       color: #d7ffea;
       background: rgba(34,197,94,.12);
       border: 1px solid rgba(34,197,94,.25);
+      backdrop-filter: blur(10px);
     }
     .profile-name h2 {
       margin: 0 0 6px;
       font-size: 26px;
+      text-align: center;
     }
     .profile-name p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
+      text-align: center;
+    }
+    .social-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      min-width: 140px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 700;
+      text-align: center;
+      transition: .25s ease;
+    }
+    .social-btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.08);
     }
     .contact-list {
       display: grid;
@@ -290,6 +377,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      justify-content: center;
     }
     .tag {
       font-size: 12px;
@@ -327,7 +415,9 @@
       padding: 28px;
       position: relative;
       overflow: hidden;
+      transition: .25s ease;
     }
+    .card:hover { transform: translateY(-4px); }
     .card h3 {
       margin: 0 0 12px;
       font-size: 22px;
@@ -350,6 +440,50 @@
       border: 1px solid rgba(255,255,255,.08);
       color: #edf1ff;
     }
+
+    .skill-bars {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .skill-bar {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .skill-top span:last-child {
+      color: #b8c6ff;
+    }
+    .bar-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+      position: relative;
+    }
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      box-shadow: 0 0 20px rgba(124,58,237,.35);
+      animation: growBar 2.2s ease forwards;
+    }
+    .bar-fill.delay-1 { animation-delay: .15s; }
+    .bar-fill.delay-2 { animation-delay: .3s; }
+    .bar-fill.delay-3 { animation-delay: .45s; }
+    .bar-fill.delay-4 { animation-delay: .6s; }
 
     ul.clean {
       margin: 0;
@@ -452,6 +586,23 @@
       font-size: 14px;
     }
 
+    @keyframes floatBlob {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-18px) translateX(8px); }
+    }
+    @keyframes floatPhoto {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    @keyframes growBar {
+      from { width: 0; }
+      to { width: var(--target); }
+    }
+
     @media (max-width: 980px) {
       .hero-wrap, .grid-2, .grid-3 {
         grid-template-columns: 1fr;
@@ -467,12 +618,20 @@
       .nav-links { display: none; }
       .hero { padding-top: 26px; }
       .hero h1 { font-size: 42px; }
-      .btn { width: 100%; }
-      .hero-actions, .contact-links { flex-direction: column; }
+      .btn, .social-btn { width: 100%; }
+      .hero-actions, .contact-links, .social-row { flex-direction: column; }
+      .profile-photo-ring {
+        width: 180px;
+        height: 180px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+
   <nav class="nav">
     <div class="container nav-inner">
       <a href="#home" class="brand">VIDHYASHREE</a>
@@ -492,6 +651,11 @@
       <div class="hero-main glass">
         <div class="eyebrow">Open to Work • QA • Testing • IT Support</div>
         <h1>Building a <span class="gradient">modern tech career</span> with testing, support, and problem-solving skills.</h1>
+
+        <div class="typing-line">
+          I am a <span class="typing-text" id="typingText"></span><span class="cursor">|</span>
+        </div>
+
         <p>
           Hi, I’m Vidhyashree R — a fresher with hands-on exposure in manual testing, automation testing basics, SQL, Java, and IT hardware & networking. I’m looking for opportunities where I can learn fast, contribute with discipline, and grow into a strong software professional.
         </p>
@@ -499,6 +663,7 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="#contact">Hire Me</a>
           <a class="btn btn-secondary" href="mailto:shreevidshree@gmail.com">Email Me</a>
+          <a class="btn btn-secondary" href="resume.pdf" download>Download Resume</a>
         </div>
 
         <div class="hero-bottom">
@@ -518,14 +683,21 @@
       </div>
 
       <aside class="hero-side glass">
-        <div class="profile-badge">
-          <div class="avatar">VR</div>
-          <div class="status">Available for roles</div>
+        <div class="profile-photo-wrap">
+          <div class="profile-photo-ring">
+            <img class="profile-photo" src="profile.jpg" alt="Vidhyashree profile photo" />
+          </div>
+          <div class="photo-badge">Available for roles</div>
         </div>
 
         <div class="profile-name">
           <h2>Vidhyashree R</h2>
           <p>Software Testing • QA • IT Support • Hardware & Networking</p>
+        </div>
+
+        <div class="social-row">
+          <a class="social-btn" href="https://www.linkedin.com/in/vidhyashree23" target="_blank">LinkedIn</a>
+          <a class="social-btn" href="https://github.com/shreevidshree-ctrl" target="_blank">GitHub</a>
         </div>
 
         <div class="contact-list">
@@ -602,44 +774,42 @@
 
       <div class="grid-2">
         <div class="card glass">
-          <h3>Software Testing</h3>
+          <h3>Skill Progress</h3>
+          <div class="skill-bars">
+            <div class="skill-bar">
+              <div class="skill-top"><span>Manual Testing</span><span>90%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="--target:90%"></div></div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-top"><span>SQL</span><span>85%</span></div>
+              <div class="bar-track"><div class="bar-fill delay-1" style="--target:85%"></div></div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-top"><span>Java Basics</span><span>78%</span></div>
+              <div class="bar-track"><div class="bar-fill delay-2" style="--target:78%"></div></div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-top"><span>Networking & IT Support</span><span>82%</span></div>
+              <div class="bar-track"><div class="bar-fill delay-3" style="--target:82%"></div></div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-top"><span>Selenium Basics</span><span>72%</span></div>
+              <div class="bar-track"><div class="bar-fill delay-4" style="--target:72%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card glass">
+          <h3>Knowledge Areas</h3>
           <ul class="clean">
             <li>Good exposure to SDLC and STLC concepts</li>
             <li>Very good knowledge of Agile methodology</li>
             <li>Practical knowledge in writing and executing test cases</li>
             <li>Knowledge of testing types and bug lifecycle</li>
-            <li>Basic Selenium concepts and writing test scripts</li>
-          </ul>
-        </div>
-
-        <div class="card glass">
-          <h3>SQL & Java</h3>
-          <ul class="clean">
             <li>Knowledge in DBMS and RDBMS concepts</li>
             <li>Strong understanding of DDL, DML, DCL, TCL and DQL</li>
-            <li>Good knowledge of subqueries and SQL query writing</li>
-            <li>Practiced in Oracle 10g database</li>
-            <li>Java basics including tokens, data types and operators</li>
-          </ul>
-        </div>
-
-        <div class="card glass">
-          <h3>IT Hardware & Networking</h3>
-          <ul class="clean">
             <li>Desktop, laptop and printer hardware support</li>
             <li>Basic networking: TCP/IP, DNS, DHCP, routers and switches</li>
-            <li>Understanding of hardware components and troubleshooting</li>
-            <li>Strong problem-solving approach in support activities</li>
-          </ul>
-        </div>
-
-        <div class="card glass">
-          <h3>Roles & Responsibilities</h3>
-          <ul class="clean">
-            <li>Write test scenarios and test cases</li>
-            <li>Find, assign and retest bugs after fixes</li>
-            <li>Convert regression test cases to automation test cases</li>
-            <li>Prepare bug reports and test summary reports</li>
           </ul>
         </div>
       </div>
@@ -770,6 +940,8 @@
         <div class="contact-links">
           <a class="btn btn-primary" href="mailto:shreevidshree@gmail.com">shreevidshree@gmail.com</a>
           <a class="btn btn-secondary" href="tel:+919342395879">+91 93423 95879</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/vidhyashree23" target="_blank">LinkedIn</a>
+          <a class="btn btn-secondary" href="https://github.com/shreevidshree-ctrl" target="_blank">GitHub</a>
         </div>
       </div>
     </div>
@@ -778,5 +950,45 @@
   <footer class="footer">
     <div class="container">© 2026 Vidhyashree R • Modern Portfolio</div>
   </footer>
+
+  <script>
+    const words = [
+      'Software Testing Fresher',
+      'QA Enthusiast',
+      'IT Support Learner',
+      'Manual Testing Candidate',
+      'Future Automation Tester'
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const typingEl = document.getElementById('typingText');
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+
+      if (!deleting) {
+        typingEl.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === currentWord.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1200);
+          return;
+        }
+      } else {
+        typingEl.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+
+      setTimeout(typeEffect, deleting ? 45 : 90);
+    }
+
+    typeEffect();
+  </script>
 </body>
 </html>
