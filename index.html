@@ -4,323 +4,471 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vidhyashree R | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-soft: #121933;
-      --card: rgba(255,255,255,0.06);
-      --text: #eef2ff;
-      --muted: #b7c0e0;
-      --accent: #7c93ff;
-      --accent-2: #59d0ff;
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 20px 50px rgba(0,0,0,0.28);
-      --radius: 22px;
-      --max: 1120px;
+      --bg: #08090d;
+      --bg-2: #0f1117;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.09);
+      --text: #f5f7ff;
+      --muted: #a7b0c3;
+      --line: rgba(255,255,255,0.1);
+      --accent: #7c3aed;
+      --accent-2: #06b6d4;
+      --accent-3: #ec4899;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(124,147,255,.20), transparent 30%),
-        radial-gradient(circle at top right, rgba(89,208,255,.16), transparent 28%),
-        linear-gradient(180deg, #08101f 0%, #0b1020 100%);
+      font-family: 'Inter', Arial, sans-serif;
       color: var(--text);
-      line-height: 1.6;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(124,58,237,.22), transparent 22%),
+        radial-gradient(circle at 80% 10%, rgba(6,182,212,.18), transparent 25%),
+        radial-gradient(circle at 50% 55%, rgba(236,72,153,.08), transparent 25%),
+        linear-gradient(180deg, #05060a 0%, #0a0c12 45%, #08090d 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.12));
+      pointer-events: none;
+      z-index: -1;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    .container { width: min(92%, var(--max)); margin: 0 auto; }
+    .section { padding: 92px 0; }
 
-    .container {
-      width: min(92%, var(--max));
-      margin: 0 auto;
-    }
-
-    .section { padding: 72px 0; }
-
-    .section-title {
-      font-size: clamp(28px, 4vw, 40px);
-      margin: 0 0 12px;
-      letter-spacing: -.02em;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      margin: 0 0 28px;
-      max-width: 720px;
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
     }
 
     .nav {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(8,16,31,.65);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(7,8,12,.55);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-
     .nav-inner {
+      min-height: 78px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
+      align-items: center;
+      gap: 18px;
     }
-
     .brand {
-      font-weight: 800;
-      letter-spacing: .04em;
-      font-size: 18px;
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
     }
-
     .nav-links {
       display: flex;
-      gap: 18px;
+      gap: 12px;
       flex-wrap: wrap;
+      align-items: center;
     }
-
     .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
       color: var(--muted);
       font-size: 14px;
+      transition: .25s ease;
     }
-
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
 
     .hero {
-      padding: 88px 0 56px;
+      padding: 54px 0 40px;
     }
-
-    .hero-grid {
+    .hero-wrap {
       display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 28px;
-      align-items: center;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+      align-items: stretch;
     }
-
-    .hero-card, .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .hero-main {
+      border-radius: 34px;
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
     }
-
-    .hero-card {
-      padding: 42px;
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,.35), transparent 70%);
+      top: -80px;
+      right: -90px;
+      pointer-events: none;
     }
-
     .eyebrow {
       display: inline-flex;
-      gap: 8px;
       align-items: center;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(124,147,255,0.15);
-      color: #d7deff;
+      gap: 10px;
       font-size: 13px;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.09);
       margin-bottom: 18px;
-      border: 1px solid rgba(124,147,255,0.22);
+      color: #d9def0;
     }
-
     .hero h1 {
-      font-size: clamp(38px, 6vw, 62px);
-      line-height: 1.05;
-      margin: 0 0 14px;
-      letter-spacing: -.04em;
+      margin: 0;
+      font-size: clamp(40px, 7vw, 74px);
+      line-height: .98;
+      letter-spacing: -.05em;
+      max-width: 760px;
     }
-
+    .hero h1 .gradient {
+      background: linear-gradient(90deg, #ffffff 0%, #b5c4ff 35%, #67e8f9 70%, #f9a8d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
     .hero p {
       color: var(--muted);
       font-size: 17px;
-      margin: 0 0 24px;
       max-width: 650px;
+      margin: 18px 0 28px;
     }
-
     .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 26px;
+      margin-bottom: 30px;
     }
-
     .btn {
+      padding: 14px 20px;
+      border-radius: 16px;
+      font-weight: 700;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      transition: .2s ease;
+      gap: 10px;
+      transition: .25s ease;
+      border: 1px solid rgba(255,255,255,.09);
     }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white;
-      border: none;
-    }
-
     .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+      color: white;
+      box-shadow: 0 14px 40px rgba(124,58,237,.35);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+    }
 
-    .hero-stats {
+    .hero-bottom {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
-
-    .stat {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
+    .mini-card {
       padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
     }
-
-    .stat h3 {
+    .mini-card h3 {
       margin: 0 0 6px;
       font-size: 24px;
     }
-
-    .stat p {
+    .mini-card p {
       margin: 0;
       font-size: 13px;
       color: var(--muted);
     }
 
-    .profile-card {
-      padding: 28px;
+    .hero-side {
+      border-radius: 34px;
+      padding: 26px;
       display: grid;
+      grid-template-rows: auto 1fr auto;
       gap: 18px;
+      position: relative;
+      overflow: hidden;
     }
-
+    .hero-side::before {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(6,182,212,.24), transparent 72%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .profile-badge {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
     .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, rgba(124,147,255,.9), rgba(89,208,255,.9));
+      width: 92px;
+      height: 92px;
+      border-radius: 26px;
       display: grid;
       place-items: center;
-      font-size: 42px;
-      font-weight: 800;
-      box-shadow: var(--shadow);
+      font-weight: 900;
+      font-size: 34px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 20px 40px rgba(0,0,0,.28);
     }
-
-    .profile-item small {
+    .status {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #d7ffea;
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.25);
+    }
+    .profile-name h2 {
+      margin: 0 0 6px;
+      font-size: 26px;
+    }
+    .profile-name p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .contact-item small {
       display: block;
       color: var(--muted);
       margin-bottom: 4px;
+      font-size: 12px;
+    }
+    .contact-item strong {
+      font-size: 15px;
+      word-break: break-word;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #e8edff;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
     }
 
-    .profile-item strong {
-      font-size: 16px;
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      margin: 0 0 10px;
+      letter-spacing: -.04em;
+    }
+    .section-subtitle {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    .card {
+      border-radius: 26px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
     }
-
-    .card { padding: 28px; }
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: -.02em;
+    }
+    .card p { color: var(--muted); }
 
     .chips {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: 16px;
     }
-
     .chip {
-      padding: 10px 14px;
+      padding: 11px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #e7ebff;
-      font-size: 14px;
-    }
-
-    .timeline-item {
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .timeline-item:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .timeline-item small {
-      color: var(--accent-2);
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: .04em;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #edf1ff;
+    }
+
+    ul.clean {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    ul.clean li { margin-bottom: 12px; }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+    .timeline-item {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .timeline-item small {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #8be9ff;
+      font-weight: 800;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
-
     .timeline-item h4 {
-      margin: 8px 0 6px;
-      font-size: 18px;
+      margin: 0 0 8px;
+      font-size: 20px;
     }
-
     .timeline-item p {
       margin: 0;
       color: var(--muted);
     }
 
-    .project p, .list p, .card p {
-      color: var(--muted);
+    .project-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-top span {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #dbe5ff;
+      margin-bottom: 16px;
+    }
+    .project-card h3 { font-size: 24px; }
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      color: #dbe5ff;
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    ul.clean {
-      padding-left: 18px;
-      margin: 14px 0 0;
-      color: var(--muted);
+    .split-highlight {
+      border-radius: 30px;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(124,58,237,.18), rgba(6,182,212,.12)),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
     }
 
-    ul.clean li {
-      margin-bottom: 10px;
-    }
-
-    .contact-box {
+    .contact-cta {
       text-align: center;
-      padding: 36px;
-      background: linear-gradient(180deg, rgba(124,147,255,.12), rgba(89,208,255,.06));
+      padding: 42px 24px;
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at top, rgba(124,58,237,.22), transparent 45%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: var(--shadow);
     }
-
+    .contact-cta p {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+    }
     .contact-links {
       display: flex;
-      gap: 14px;
-      justify-content: center;
       flex-wrap: wrap;
-      margin-top: 20px;
+      justify-content: center;
+      gap: 14px;
     }
 
     .footer {
-      padding: 28px 0 46px;
+      padding: 28px 0 42px;
       color: var(--muted);
       text-align: center;
       font-size: 14px;
     }
 
-    @media (max-width: 920px) {
-      .hero-grid, .grid-2, .grid-3 {
+    @media (max-width: 980px) {
+      .hero-wrap, .grid-2, .grid-3 {
         grid-template-columns: 1fr;
       }
+      .hero-main, .hero-side, .card, .contact-cta { padding: 24px; }
+      .hero-bottom { grid-template-columns: 1fr; }
+      .section { padding: 74px 0; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
 
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card {
-        padding: 28px;
-      }
+    @media (max-width: 620px) {
+      .nav-inner { min-height: 70px; }
+      .nav-links { display: none; }
+      .hero { padding-top: 26px; }
+      .hero h1 { font-size: 42px; }
+      .btn { width: 100%; }
+      .hero-actions, .contact-links { flex-direction: column; }
     }
   </style>
 </head>
@@ -340,58 +488,70 @@
   </nav>
 
   <header class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="hero-card">
-        <div class="eyebrow">Open to Work • Software Testing • IT Support</div>
-        <h1>Hi, I'm Vidhyashree R</h1>
+    <div class="container hero-wrap">
+      <div class="hero-main glass">
+        <div class="eyebrow">Open to Work • QA • Testing • IT Support</div>
+        <h1>Building a <span class="gradient">modern tech career</span> with testing, support, and problem-solving skills.</h1>
         <p>
-          Fresher with hands-on exposure in manual testing, automation testing basics, SQL, Java,
-          and IT hardware & networking. I’m looking for opportunities where I can learn quickly,
-          contribute effectively, and grow into a strong technology professional.
+          Hi, I’m Vidhyashree R — a fresher with hands-on exposure in manual testing, automation testing basics, SQL, Java, and IT hardware & networking. I’m looking for opportunities where I can learn fast, contribute with discipline, and grow into a strong software professional.
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Contact Me</a>
-          <a class="btn" href="mailto:shreevidshree@gmail.com">Email Resume</a>
+          <a class="btn btn-primary" href="#contact">Hire Me</a>
+          <a class="btn btn-secondary" href="mailto:shreevidshree@gmail.com">Email Me</a>
         </div>
 
-        <div class="hero-stats">
-          <div class="stat">
+        <div class="hero-bottom">
+          <div class="mini-card">
             <h3>3+</h3>
-            <p>Project exposures in testing and application workflows</p>
+            <p>Project exposures in real testing and workflow validation</p>
           </div>
-          <div class="stat">
+          <div class="mini-card">
             <h3>5+</h3>
-            <p>Core technical skill areas across testing, SQL, Java, and hardware</p>
+            <p>Core technical areas across QA, SQL, Java, hardware and networking</p>
           </div>
-          <div class="stat">
+          <div class="mini-card">
             <h3>2025</h3>
-            <p>Latest training in software testing and IT hardware & networking</p>
+            <p>Recent technical training in software testing and IT troubleshooting</p>
           </div>
         </div>
       </div>
 
-      <aside class="profile-card hero-card">
-        <div class="avatar">VR</div>
-
-        <div class="profile-item">
-          <small>Email</small>
-          <strong>shreevidshree@gmail.com</strong>
+      <aside class="hero-side glass">
+        <div class="profile-badge">
+          <div class="avatar">VR</div>
+          <div class="status">Available for roles</div>
         </div>
 
-        <div class="profile-item">
-          <small>Phone</small>
-          <strong>+91 93423 95879</strong>
+        <div class="profile-name">
+          <h2>Vidhyashree R</h2>
+          <p>Software Testing • QA • IT Support • Hardware & Networking</p>
         </div>
 
-        <div class="profile-item">
-          <small>Location</small>
-          <strong>Karur, Tamil Nadu</strong>
+        <div class="contact-list">
+          <div class="contact-item">
+            <small>Email</small>
+            <strong>shreevidshree@gmail.com</strong>
+          </div>
+          <div class="contact-item">
+            <small>Phone</small>
+            <strong>+91 93423 95879</strong>
+          </div>
+          <div class="contact-item">
+            <small>Location</small>
+            <strong>Karur, Tamil Nadu</strong>
+          </div>
+          <div class="contact-item">
+            <small>Languages</small>
+            <strong>English, Tamil</strong>
+          </div>
         </div>
 
-        <div class="profile-item">
-          <small>Languages</small>
-          <strong>English, Tamil</strong>
+        <div class="tag-row">
+          <span class="tag">Manual Testing</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Java</span>
+          <span class="tag">Networking</span>
         </div>
       </aside>
     </div>
@@ -399,23 +559,22 @@
 
   <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <p class="section-subtitle">
-        I aim to build my career in a reputed organization where I can apply my learning,
-        strengthen my practical skills, and contribute to team growth through dedication,
-        adaptability, and consistent problem solving.
-      </p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">A fresher profile presented in a modern portfolio style with clear strengths, clean sections, and recruiter-friendly content.</p>
+        </div>
+      </div>
 
       <div class="grid-2">
-        <div class="card">
+        <div class="card glass">
           <h3>Career Objective</h3>
           <p>
-            Seeking a challenging position in a reputed organization where I can learn new skills,
-            expand my knowledge, leverage my learning, and contribute meaningfully to organizational growth.
+            Seeking a challenging role in a reputed organization where I can apply my learning, improve my practical skills, expand my technical knowledge, and contribute meaningfully to team and organizational growth.
           </p>
         </div>
 
-        <div class="card">
+        <div class="card glass">
           <h3>Core Strengths</h3>
           <div class="chips">
             <span class="chip">Manual Testing</span>
@@ -423,9 +582,9 @@
             <span class="chip">SQL Queries</span>
             <span class="chip">Java Basics</span>
             <span class="chip">IT Support</span>
-            <span class="chip">Networking Basics</span>
             <span class="chip">Troubleshooting</span>
             <span class="chip">Bug Reporting</span>
+            <span class="chip">Networking Basics</span>
           </div>
         </div>
       </div>
@@ -434,49 +593,51 @@
 
   <section class="section" id="skills">
     <div class="container">
-      <h2 class="section-title">Technical Skills</h2>
-      <p class="section-subtitle">
-        A strong base in software testing, databases, programming, and IT support fundamentals.
-      </p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Technical Skills</h2>
+          <p class="section-subtitle">Strong foundation across software testing, SQL, Java, IT support, and networking basics.</p>
+        </div>
+      </div>
 
       <div class="grid-2">
-        <div class="card">
+        <div class="card glass">
           <h3>Software Testing</h3>
           <ul class="clean">
             <li>Good exposure to SDLC and STLC concepts</li>
             <li>Very good knowledge of Agile methodology</li>
             <li>Practical knowledge in writing and executing test cases</li>
-            <li>Knowledge of multiple testing types and bug lifecycle</li>
+            <li>Knowledge of testing types and bug lifecycle</li>
             <li>Basic Selenium concepts and writing test scripts</li>
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card glass">
           <h3>SQL & Java</h3>
           <ul class="clean">
             <li>Knowledge in DBMS and RDBMS concepts</li>
-            <li>Strong understanding of DDL, DML, DCL, TCL, and DQL</li>
-            <li>Good with subqueries and SQL query writing</li>
+            <li>Strong understanding of DDL, DML, DCL, TCL and DQL</li>
+            <li>Good knowledge of subqueries and SQL query writing</li>
             <li>Practiced in Oracle 10g database</li>
-            <li>Java basics including tokens, database concepts, data types, and operators</li>
+            <li>Java basics including tokens, data types and operators</li>
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card glass">
           <h3>IT Hardware & Networking</h3>
           <ul class="clean">
-            <li>Desktop, laptop, and printer hardware support</li>
-            <li>Basic networking: TCP/IP, DNS, DHCP, routers, and switches</li>
-            <li>Knowledge of common IT hardware components</li>
-            <li>Strong troubleshooting and problem-solving skills</li>
+            <li>Desktop, laptop and printer hardware support</li>
+            <li>Basic networking: TCP/IP, DNS, DHCP, routers and switches</li>
+            <li>Understanding of hardware components and troubleshooting</li>
+            <li>Strong problem-solving approach in support activities</li>
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card glass">
           <h3>Roles & Responsibilities</h3>
           <ul class="clean">
             <li>Write test scenarios and test cases</li>
-            <li>Find, assign, and retest bugs after fixes</li>
+            <li>Find, assign and retest bugs after fixes</li>
             <li>Convert regression test cases to automation test cases</li>
             <li>Prepare bug reports and test summary reports</li>
           </ul>
@@ -487,25 +648,25 @@
 
   <section class="section" id="education">
     <div class="container">
-      <h2 class="section-title">Education</h2>
-      <p class="section-subtitle">
-        Academic background with strong performance in electronics and foundational schooling.
-      </p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">Academic milestones shown in a cleaner, more trendy timeline layout.</p>
+        </div>
+      </div>
 
-      <div class="card">
-        <div class="timeline-item">
+      <div class="timeline">
+        <div class="timeline-item glass">
           <small>2022</small>
           <h4>Bachelor of Electronics — 84%</h4>
           <p>Seethalakshmi Ramaswami College, Trichy</p>
         </div>
-
-        <div class="timeline-item">
+        <div class="timeline-item glass">
           <small>2019</small>
           <h4>SSLC — 84%</h4>
           <p>Government Girls Higher Secondary School, Kulithalai</p>
         </div>
-
-        <div class="timeline-item">
+        <div class="timeline-item glass">
           <small>2017</small>
           <h4>HSC — 63.5%</h4>
           <p>Amala Matric Higher Secondary School, Musiri</p>
@@ -516,34 +677,48 @@
 
   <section class="section" id="projects">
     <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">
-        Hands-on project exposure in application testing, workflow validation, and quality assurance activities.
-      </p>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">Highlighted in a card-based modern style to look more like current portfolio websites.</p>
+        </div>
+      </div>
 
       <div class="grid-3">
-        <div class="card project">
-          <h3>Asset Management</h3>
-          <p>
-            Tested an asset management web application used to track hardware, software, and licenses,
-            including lifecycle, procurement, inventory, and disposal workflows.
-          </p>
+        <div class="card glass project-card">
+          <div class="project-top">
+            <span>Testing Project</span>
+            <h3>Asset Management</h3>
+            <p>Tested a web application used to track hardware, software and licenses including procurement, lifecycle, inventory and disposal workflows.</p>
+          </div>
+          <div class="project-footer">
+            <span>QA Workflow</span>
+            <span>Manual Testing</span>
+          </div>
         </div>
 
-        <div class="card project">
-          <h3>Tailoring Software</h3>
-          <p>
-            Tested a custom software solution for a tailoring shop to manage customer orders,
-            measurements, delivery schedules, and payment flow.
-          </p>
+        <div class="card glass project-card">
+          <div class="project-top">
+            <span>Application Testing</span>
+            <h3>Tailoring Software</h3>
+            <p>Worked on validating software features for customer orders, measurements, delivery schedules and payment management workflow.</p>
+          </div>
+          <div class="project-footer">
+            <span>Business App</span>
+            <span>Functional Testing</span>
+          </div>
         </div>
 
-        <div class="card project">
-          <h3>Meesow Automation Testing</h3>
-          <p>
-            Worked on automating test processes for application features including product browsing,
-            transactions, order processing, performance, and user experience validation.
-          </p>
+        <div class="card glass project-card">
+          <div class="project-top">
+            <span>Automation Exposure</span>
+            <h3>Meesow Automation Testing</h3>
+            <p>Worked on automation-related testing for browsing, transaction flow, order process, application performance and user experience validation.</p>
+          </div>
+          <div class="project-footer">
+            <span>Automation Basics</span>
+            <span>QA Practice</span>
+          </div>
         </div>
       </div>
     </div>
@@ -551,31 +726,35 @@
 
   <section class="section" id="certifications">
     <div class="container">
-      <h2 class="section-title">Certifications & Activities</h2>
-      <p class="section-subtitle">
-        Training, workshops, and co-curricular participation that strengthened both technical and practical skills.
-      </p>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Certifications</h3>
-          <ul class="clean">
-            <li>Software Testing Certification — QSpiders Chennai (2024–2025)</li>
-            <li>Junior Technician in IT Hardware & Network Troubleshooting — Trichy (2025)</li>
-            <li>PCB Designing Training — 60 Days</li>
-            <li>Short-term Professional Placement Training Programme — 2022</li>
-          </ul>
+      <div class="split-highlight glass">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <p class="section-subtitle">Training, workshops and participation details displayed in a more premium-looking section.</p>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>Workshops & Co-Curricular</h3>
-          <ul class="clean">
-            <li>National Technical Workshop on Maintenance of Electrical and Electronic Equipment</li>
-            <li>Participated in PHYEL Fires-2020</li>
-            <li>Core Certificate — Second Place (2021)</li>
-            <li>Allied Courses Certificate — Second Place (2022)</li>
-            <li>Participated in EXPOSERA-2022</li>
-          </ul>
+        <div class="grid-2">
+          <div class="card glass">
+            <h3>Certifications</h3>
+            <ul class="clean">
+              <li>Software Testing Certification — QSpiders Chennai (2024–2025)</li>
+              <li>Junior Technician in IT Hardware & Network Troubleshooting — Trichy (2025)</li>
+              <li>PCB Designing Training — 60 Days</li>
+              <li>Short-term Professional Placement Training Programme — 2022</li>
+            </ul>
+          </div>
+
+          <div class="card glass">
+            <h3>Workshops & Co-Curricular</h3>
+            <ul class="clean">
+              <li>National Technical Workshop on Maintenance of Electrical and Electronic Equipment</li>
+              <li>Participated in PHYEL Fires-2020</li>
+              <li>Core Certificate — Second Place (2021)</li>
+              <li>Allied Courses Certificate — Second Place (2022)</li>
+              <li>Participated in EXPOSERA-2022</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -583,23 +762,21 @@
 
   <section class="section" id="contact">
     <div class="container">
-      <div class="card contact-box">
-        <h2 class="section-title" style="margin-bottom:10px;">Let’s Connect</h2>
-        <p class="section-subtitle" style="margin:0 auto;">
-          I’m currently looking for opportunities in Software Testing, QA, IT Support,
-          Hardware & Networking, and entry-level technical roles.
+      <div class="contact-cta glass">
+        <h2 class="section-title">Let’s Connect</h2>
+        <p>
+          I’m currently looking for opportunities in Software Testing, QA, IT Support, Hardware & Networking, and entry-level technical roles. Let’s connect for suitable openings.
         </p>
-
         <div class="contact-links">
           <a class="btn btn-primary" href="mailto:shreevidshree@gmail.com">shreevidshree@gmail.com</a>
-          <a class="btn" href="tel:+919342395879">+91 93423 95879</a>
+          <a class="btn btn-secondary" href="tel:+919342395879">+91 93423 95879</a>
         </div>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <div class="container">© 2026 Vidhyashree R • Portfolio Website</div>
+    <div class="container">© 2026 Vidhyashree R • Modern Portfolio</div>
   </footer>
 </body>
 </html>
