@@ -6,141 +6,745 @@
   <title>Vidhyashree R | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-        .skills-showcase {
-          display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 22px;
-        }
-        .skills-spotlight {
-          border-radius: 18px;
-          padding: 28px;
-          background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.98));
-          border: 1px solid rgba(15,23,42,.08);
-          position: relative;
-          overflow: hidden;
-        }
-        .skills-spotlight::after {
-          content: "";
-          position: absolute;
-          right: -40px;
-          top: -40px;
-          width: 180px;
-          height: 180px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(37,99,235,.08), transparent 70%);
-        }
-        .skills-spotlight h3 {
-          margin: 0 0 10px;
-          font-size: 24px;
-        }
-        .skills-spotlight p {
-          color: var(--muted);
-          margin: 0 0 20px;
-          max-width: 540px;
-        }
-        .skill-badges {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-        }
-        .skill-badge {
-          padding: 10px 14px;
-          border-radius: 12px;
-          background: #ffffff;
-          border: 1px solid rgba(15,23,42,.08);
-          font-weight: 700;
-          color: #0f172a;
-          box-shadow: none;
-        }
-        .skill-panels {
-          display: grid;
-          gap: 18px;
-        }
-        .skill-panel {
-          border-radius: 16px;
-          padding: 22px;
-          background: #ffffff;
-          border: 1px solid rgba(15,23,42,.08);
-          transition: .25s ease;
-        }
-        .skill-panel:hover {
-          transform: translateY(-2px);
-          border-color: rgba(37,99,235,.16);
-        }
-        .skill-panel h3 {
-          margin: 0 0 12px;
-          font-size: 20px;
-        }
-        .skill-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-        }
-        .skill-tag {
-          padding: 9px 12px;
-          border-radius: 999px;
-          font-size: 12px;
-          font-weight: 700;
-          background: #f8fafc;
-          border: 1px solid rgba(15,23,42,.07);
-          color: #334155;
-        }
-        .skills-mini-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 18px;
-          margin-top: 22px;
-        }
-        .skills-mini-card {
-          border-radius: 16px;
-          padding: 20px;
-          background: #ffffff;
-          border: 1px solid rgba(15,23,42,.08);
-        }
-        .skills-mini-card h4 {
-          margin: 0 0 12px;
-          font-size: 17px;
-        }
-        .skills-mini-card ul {
-          margin: 0;
-          padding-left: 18px;
-          color: var(--muted);
-        }
-        .skills-mini-card li {
-          margin-bottom: 10px;
-        }
-        @media (max-width: 980px) {
-          .skills-showcase {
-            grid-template-columns: 1fr;
-          }
-          .skills-mini-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      </style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #dbe4ee;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --soft-blue: #eff6ff;
+      --green: #16a34a;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      --radius: 18px;
+      --max-width: 1160px;
+    }
 
-      <div class="skills-showcase">
-        <div class="skills-spotlight glass">
-          <h3>What I work with</h3>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 740px;
+      font-size: 16px;
+    }
+
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #111827;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 999px;
+    }
+
+    .nav a:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 56px 0 34px;
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      border: 1px solid #cfe0ff;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      max-width: 700px;
+    }
+
+    .hero h1 .blue {
+      color: var(--primary);
+    }
+
+    .typing-line {
+      margin: 16px 0 10px;
+      min-height: 28px;
+      color: #334155;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .typing-text {
+      color: var(--primary);
+    }
+
+    .cursor {
+      display: inline-block;
+      margin-left: 2px;
+      animation: blink 0.9s infinite;
+    }
+
+    .hero p {
+      margin: 12px 0 24px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 660px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card h3 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+
+    .stat-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .profile-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-photo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .profile-photo {
+      width: 210px;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .available-badge {
+      position: absolute;
+      right: 20px;
+      bottom: 10px;
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .profile-card h2 {
+      margin: 0 0 6px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .profile-card .role {
+      margin: 0 0 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .social-btn {
+      min-width: 140px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .social-btn:hover {
+      border-color: #bfd4f8;
+      background: #f8fbff;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .info-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .info-item strong {
+      font-size: 15px;
+      word-break: break-word;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .chip-row,
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip,
+    .skill-tag {
+      background: #f8fafc;
+      color: #334155;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .skills-feature {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .skills-feature p {
+      margin-bottom: 18px;
+    }
+
+    .skills-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .mini-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .mini-box h4 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .mini-box ul,
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .mini-box li,
+    .card li {
+      margin-bottom: 10px;
+    }
+
+    .skill-panel-wrap {
+      display: grid;
+      gap: 16px;
+    }
+
+    .skill-panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-panel h4 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .timeline-item {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-item small {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h4 {
+      margin: 0 0 6px;
+      font-size: 19px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250px;
+    }
+
+    .project-label {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+      border: 1px solid #cfe0ff;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .project-card p {
+      margin-top: 0;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .contact-box {
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .contact-box p {
+      max-width: 760px;
+      margin: 0 auto 22px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .skills-layout,
+      .skills-mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 36px;
+      }
+
+      .btn,
+      .social-btn {
+        width: 100%;
+      }
+
+      .hero-actions,
+      .contact-links,
+      .social-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">VIDHYASHREE</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">Open to Work • Software Testing • IT Support</div>
+
+        <h1>
+          Building a <span class="blue">professional career</span><br>
+          in testing, QA, and technical support
+        </h1>
+
+        <div class="typing-line">
+          I am a <span class="typing-text" id="typingText"></span><span class="cursor">|</span>
+        </div>
+
+        <p>
+          Hi, I’m Vidhyashree R — a fresher with hands-on exposure in manual testing, automation testing basics, SQL, Java, and IT hardware & networking. I’m looking for opportunities where I can learn quickly, contribute effectively, and grow into a strong technology professional.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Contact Me</a>
+          <a class="btn btn-secondary" href="resume.pdf" download>Download Resume</a>
+          <a class="btn btn-secondary" href="mailto:shreevidshree@gmail.com">Email Me</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <h3>3+</h3>
+            <p>Project exposures in testing and application workflows</p>
+          </div>
+          <div class="stat-card">
+            <h3>5+</h3>
+            <p>Core technical areas across QA, SQL, Java and support</p>
+          </div>
+          <div class="stat-card">
+            <h3>2025</h3>
+            <p>Recent training in software testing and IT troubleshooting</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <div class="profile-photo-wrap">
+          <img class="profile-photo" src="profile.jpg" alt="Vidhyashree profile photo" />
+          <div class="available-badge">Available for roles</div>
+        </div>
+
+        <h2>Vidhyashree R</h2>
+        <p class="role">Software Testing • QA • IT Support • Hardware & Networking</p>
+
+        <div class="social-row">
+          <a class="social-btn" href="https://www.linkedin.com/in/vidhyashree23" target="_blank">💼 LinkedIn</a>
+          <a class="social-btn" href="https://github.com/shreevidshree-ctrl" target="_blank">💻 GitHub</a>
+        </div>
+
+        <div class="info-list">
+          <div class="info-item">
+            <small>Email</small>
+            <strong>shreevidshree@gmail.com</strong>
+          </div>
+          <div class="info-item">
+            <small>Phone</small>
+            <strong>+91 93423 95879</strong>
+          </div>
+          <div class="info-item">
+            <small>Location</small>
+            <strong>Karur, Tamil Nadu</strong>
+          </div>
+          <div class="info-item">
+            <small>Languages</small>
+            <strong>English, Tamil</strong>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">
+        A clean and professional fresher portfolio that presents my strengths, technical background, and project exposure in a recruiter-friendly format.
+      </p>
+
+      <div class="grid-2" style="margin-top: 28px;">
+        <div class="card">
+          <h3>Career Objective</h3>
           <p>
-            My skill set combines software testing knowledge, database basics, programming fundamentals, and IT support understanding — presented in a modern recruiter-friendly way.
+            Seeking a challenging role in a reputed organization where I can apply my learning, improve my practical skills, expand my technical knowledge, and contribute meaningfully to organizational growth.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Core Strengths</h3>
+          <div class="chip-row">
+            <span class="chip">Manual Testing</span>
+            <span class="chip">Selenium Basics</span>
+            <span class="chip">SQL Queries</span>
+            <span class="chip">Java Basics</span>
+            <span class="chip">IT Support</span>
+            <span class="chip">Troubleshooting</span>
+            <span class="chip">Bug Reporting</span>
+            <span class="chip">Networking Basics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">
+        My skill set combines software testing knowledge, database basics, programming fundamentals, and IT support understanding in a clean structured layout.
+      </p>
+
+      <div class="skills-layout">
+        <div class="card skills-feature">
+          <h3>Skill Overview</h3>
+          <p>
+            I have a solid foundation in manual testing, QA process understanding, SQL concepts, Java basics, and IT hardware & networking support. My learning is supported by hands-on project exposure and technical training.
           </p>
 
-          <div class="skill-badges">
-            <span class="skill-badge">Manual Testing</span>
-            <span class="skill-badge">Selenium Basics</span>
-            <span class="skill-badge">SQL</span>
-            <span class="skill-badge">Java Basics</span>
-            <span class="skill-badge">IT Support</span>
-            <span class="skill-badge">Networking</span>
-            <span class="skill-badge">Troubleshooting</span>
-            <span class="skill-badge">Bug Reporting</span>
+          <div class="chip-row">
+            <span class="chip">Manual Testing</span>
+            <span class="chip">Agile</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Java</span>
+            <span class="chip">Selenium Basics</span>
+            <span class="chip">Desktop Support</span>
+            <span class="chip">Networking</span>
+            <span class="chip">Bug Tracking</span>
           </div>
 
           <div class="skills-mini-grid">
-            <div class="skills-mini-card">
+            <div class="mini-box">
               <h4>Testing Strength</h4>
               <ul>
                 <li>SDLC and STLC concepts</li>
@@ -149,7 +753,8 @@
                 <li>Bug lifecycle basics</li>
               </ul>
             </div>
-            <div class="skills-mini-card">
+
+            <div class="mini-box">
               <h4>Support Strength</h4>
               <ul>
                 <li>Desktop and laptop support</li>
@@ -161,20 +766,20 @@
           </div>
         </div>
 
-        <div class="skill-panels">
-          <div class="skill-panel glass">
-            <h3>Software Testing</h3>
+        <div class="skill-panel-wrap">
+          <div class="skill-panel">
+            <h4>Software Testing</h4>
             <div class="skill-tags">
               <span class="skill-tag">Manual Testing</span>
               <span class="skill-tag">Test Cases</span>
-              <span class="skill-tag">Bug Reporting</span>
               <span class="skill-tag">Regression</span>
+              <span class="skill-tag">Bug Reporting</span>
               <span class="skill-tag">Agile</span>
             </div>
           </div>
 
-          <div class="skill-panel glass">
-            <h3>SQL & Java</h3>
+          <div class="skill-panel">
+            <h4>SQL & Java</h4>
             <div class="skill-tags">
               <span class="skill-tag">DBMS</span>
               <span class="skill-tag">RDBMS</span>
@@ -184,8 +789,8 @@
             </div>
           </div>
 
-          <div class="skill-panel glass">
-            <h3>IT Hardware & Networking</h3>
+          <div class="skill-panel">
+            <h4>IT Hardware & Networking</h4>
             <div class="skill-tags">
               <span class="skill-tag">Desktop Support</span>
               <span class="skill-tag">Printer Support</span>
@@ -196,8 +801,8 @@
             </div>
           </div>
 
-          <div class="skill-panel glass">
-            <h3>Responsibilities</h3>
+          <div class="skill-panel">
+            <h4>Responsibilities</h4>
             <div class="skill-tags">
               <span class="skill-tag">Scenario Writing</span>
               <span class="skill-tag">Retesting</span>
@@ -212,25 +817,25 @@
 
   <section class="section" id="education">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Education</h2>
-          <p class="section-subtitle">Academic milestones presented in a cleaner, more corporate timeline format.</p>
-        </div>
-      </div>
+      <h2 class="section-title">Education</h2>
+      <p class="section-subtitle">
+        Academic background presented in a simple and professional timeline format.
+      </p>
 
       <div class="timeline">
-        <div class="timeline-item glass">
+        <div class="timeline-item">
           <small>2022</small>
           <h4>Bachelor of Electronics — 84%</h4>
           <p>Seethalakshmi Ramaswami College, Trichy</p>
         </div>
-        <div class="timeline-item glass">
+
+        <div class="timeline-item">
           <small>2019</small>
           <h4>SSLC — 84%</h4>
           <p>Government Girls Higher Secondary School, Kulithalai</p>
         </div>
-        <div class="timeline-item glass">
+
+        <div class="timeline-item">
           <small>2017</small>
           <h4>HSC — 63.5%</h4>
           <p>Amala Matric Higher Secondary School, Musiri</p>
@@ -241,19 +846,19 @@
 
   <section class="section" id="projects">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Projects</h2>
-          <p class="section-subtitle">Projects presented in a more structured, professional card layout.</p>
-        </div>
-      </div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        Project experience presented in a structured format to highlight application testing and QA workflow exposure.
+      </p>
 
-      <div class="grid-3">
-        <div class="card glass project-card">
-          <div class="project-top">
-            <span>Testing Project</span>
+      <div class="grid-3" style="margin-top: 28px;">
+        <div class="card project-card">
+          <div>
+            <span class="project-label">Testing Project</span>
             <h3>Asset Management</h3>
-            <p>Tested a web application used to track hardware, software and licenses including procurement, lifecycle, inventory and disposal workflows.</p>
+            <p>
+              Tested an asset management web application used to track hardware, software, and licenses including lifecycle, procurement, inventory, and disposal workflows.
+            </p>
           </div>
           <div class="project-footer">
             <span>QA Workflow</span>
@@ -261,11 +866,13 @@
           </div>
         </div>
 
-        <div class="card glass project-card">
-          <div class="project-top">
-            <span>Application Testing</span>
+        <div class="card project-card">
+          <div>
+            <span class="project-label">Application Testing</span>
             <h3>Tailoring Software</h3>
-            <p>Worked on validating software features for customer orders, measurements, delivery schedules and payment management workflow.</p>
+            <p>
+              Worked on validating software features for customer orders, measurements, delivery schedules, and payment workflow management.
+            </p>
           </div>
           <div class="project-footer">
             <span>Business App</span>
@@ -273,11 +880,13 @@
           </div>
         </div>
 
-        <div class="card glass project-card">
-          <div class="project-top">
-            <span>Automation Exposure</span>
+        <div class="card project-card">
+          <div>
+            <span class="project-label">Automation Exposure</span>
             <h3>Meesow Automation Testing</h3>
-            <p>Worked on automation-related testing for browsing, transaction flow, order process, application performance and user experience validation.</p>
+            <p>
+              Worked on automation-related testing for browsing, transactions, order process, performance, and user experience validation.
+            </p>
           </div>
           <div class="project-footer">
             <span>Automation Basics</span>
@@ -290,35 +899,31 @@
 
   <section class="section" id="certifications">
     <div class="container">
-      <div class="split-highlight glass">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Certifications & Achievements</h2>
-            <p class="section-subtitle">Training, workshops, and achievements presented in a clean professional section.</p>
-          </div>
+      <h2 class="section-title">Certifications & Achievements</h2>
+      <p class="section-subtitle">
+        Training, workshops, and participation details that support my technical foundation.
+      </p>
+
+      <div class="grid-2" style="margin-top: 28px;">
+        <div class="card">
+          <h3>Certifications</h3>
+          <ul>
+            <li>Software Testing Certification — QSpiders Chennai (2024–2025)</li>
+            <li>Junior Technician in IT Hardware & Network Troubleshooting — Trichy (2025)</li>
+            <li>PCB Designing Training — 60 Days</li>
+            <li>Short-term Professional Placement Training Programme — 2022</li>
+          </ul>
         </div>
 
-        <div class="grid-2">
-          <div class="card glass">
-            <h3>Certifications</h3>
-            <ul class="clean">
-              <li>Software Testing Certification — QSpiders Chennai (2024–2025)</li>
-              <li>Junior Technician in IT Hardware & Network Troubleshooting — Trichy (2025)</li>
-              <li>PCB Designing Training — 60 Days</li>
-              <li>Short-term Professional Placement Training Programme — 2022</li>
-            </ul>
-          </div>
-
-          <div class="card glass">
-            <h3>Workshops & Co-Curricular</h3>
-            <ul class="clean">
-              <li>National Technical Workshop on Maintenance of Electrical and Electronic Equipment</li>
-              <li>Participated in PHYEL Fires-2020</li>
-              <li>Core Certificate — Second Place (2021)</li>
-              <li>Allied Courses Certificate — Second Place (2022)</li>
-              <li>Participated in EXPOSERA-2022</li>
-            </ul>
-          </div>
+        <div class="card">
+          <h3>Workshops & Co-Curricular</h3>
+          <ul>
+            <li>National Technical Workshop on Maintenance of Electrical and Electronic Equipment</li>
+            <li>Participated in PHYEL Fires-2020</li>
+            <li>Core Certificate — Second Place (2021)</li>
+            <li>Allied Courses Certificate — Second Place (2022)</li>
+            <li>Participated in EXPOSERA-2022</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -326,11 +931,12 @@
 
   <section class="section" id="contact">
     <div class="container">
-      <div class="contact-cta glass">
+      <div class="card contact-box">
         <h2 class="section-title">Let’s Connect</h2>
         <p>
-          I’m currently looking for opportunities in Software Testing, QA, IT Support, Hardware & Networking, and entry-level technical roles. Let’s connect for suitable openings.
+          I’m currently looking for opportunities in Software Testing, QA, IT Support, Hardware & Networking, and entry-level technical roles. I would be glad to connect for suitable openings.
         </p>
+
         <div class="contact-links">
           <a class="btn btn-primary" href="mailto:shreevidshree@gmail.com">shreevidshree@gmail.com</a>
           <a class="btn btn-secondary" href="tel:+919342395879">+91 93423 95879</a>
@@ -342,22 +948,22 @@
   </section>
 
   <footer class="footer">
-    <div class="container">© 2026 Vidhyashree R • Modern Portfolio</div>
+    <div class="container">© 2026 Vidhyashree R • Portfolio</div>
   </footer>
 
   <script>
     const words = [
-      'Software Testing Fresher',
-      'QA Enthusiast',
-      'IT Support Learner',
-      'Manual Testing Candidate',
-      'Future Automation Tester'
+      "Software Testing Fresher",
+      "QA Enthusiast",
+      "IT Support Learner",
+      "Manual Testing Candidate",
+      "Future Automation Tester"
     ];
 
     let wordIndex = 0;
     let charIndex = 0;
     let deleting = false;
-    const typingEl = document.getElementById('typingText');
+    const typingEl = document.getElementById("typingText");
 
     function typeEffect() {
       const currentWord = words[wordIndex];
@@ -367,7 +973,7 @@
         charIndex++;
         if (charIndex === currentWord.length) {
           deleting = true;
-          setTimeout(typeEffect, 1200);
+          setTimeout(typeEffect, 1000);
           return;
         }
       } else {
@@ -379,7 +985,7 @@
         }
       }
 
-      setTimeout(typeEffect, deleting ? 45 : 90);
+      setTimeout(typeEffect, deleting ? 45 : 85);
     }
 
     typeEffect();
