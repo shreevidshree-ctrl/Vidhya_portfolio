@@ -8,781 +8,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #08090d;
-      --bg-2: #0f1117;
-      --panel: rgba(255,255,255,0.06);
-      --panel-strong: rgba(255,255,255,0.09);
-      --text: #f5f7ff;
-      --muted: #a7b0c3;
-      --line: rgba(255,255,255,0.1);
-      --accent: #7c3aed;
-      --accent-2: #06b6d4;
-      --accent-3: #ec4899;
-      --success: #22c55e;
-      --warning: #f59e0b;
-      --shadow: 0 20px 60px rgba(0,0,0,0.35);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 10%, rgba(124,58,237,.22), transparent 22%),
-        radial-gradient(circle at 80% 10%, rgba(6,182,212,.18), transparent 25%),
-        radial-gradient(circle at 50% 55%, rgba(236,72,153,.08), transparent 25%),
-        linear-gradient(180deg, #05060a 0%, #0a0c12 45%, #08090d 100%);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 34px 34px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.12));
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    .container { width: min(92%, var(--max)); margin: 0 auto; }
-    .section { padding: 92px 0; }
-
-    .glass {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
-    }
-
-    .floating-shape {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(10px);
-      opacity: .35;
-      pointer-events: none;
-      z-index: -1;
-      animation: floatBlob 8s ease-in-out infinite;
-    }
-    .shape-1 {
-      width: 130px;
-      height: 130px;
-      top: 18%;
-      left: 4%;
-      background: radial-gradient(circle, rgba(124,58,237,.65), transparent 70%);
-    }
-    .shape-2 {
-      width: 160px;
-      height: 160px;
-      top: 62%;
-      right: 4%;
-      background: radial-gradient(circle, rgba(6,182,212,.65), transparent 70%);
-      animation-duration: 10s;
-    }
-    .shape-3 {
-      width: 110px;
-      height: 110px;
-      bottom: 10%;
-      left: 12%;
-      background: radial-gradient(circle, rgba(236,72,153,.6), transparent 70%);
-      animation-duration: 9s;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(7,8,12,.55);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav-inner {
-      min-height: 78px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-    }
-    .brand {
-      font-weight: 900;
-      font-size: 1.05rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-    .nav-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .nav-links a {
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 14px;
-      transition: .25s ease;
-    }
-    .nav-links a:hover {
-      color: var(--text);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .hero {
-      padding: 54px 0 40px;
-      position: relative;
-    }
-    .hero-wrap {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-    .hero-main {
-      border-radius: 34px;
-      padding: 44px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-main::after {
-      content: "";
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,58,237,.35), transparent 70%);
-      top: -80px;
-      right: -90px;
-      pointer-events: none;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.09);
-      margin-bottom: 18px;
-      color: #d9def0;
-    }
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(28px, 4.2vw, 48px);
-      line-height: .98;
-      letter-spacing: -.05em;
-      max-width: 760px;
-    }
-    .hero h1 .gradient {
-      background: linear-gradient(90deg, #ffffff 0%, #b5c4ff 35%, #67e8f9 70%, #f9a8d4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
-    .typing-line {
-      margin: 18px 0 8px;
-      font-size: 18px;
-      font-weight: 700;
-      min-height: 28px;
-      color: #dde4ff;
-    }
-    .typing-line .typing-text {
-      color: #8be9ff;
-    }
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      animation: blink 0.9s infinite;
-    }
-    .hero p {
-      color: var(--muted);
-      font-size: 17px;
-      max-width: 650px;
-      margin: 14px 0 28px;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-    .btn {
-      padding: 14px 20px;
-      border-radius: 16px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: .25s ease;
-      border: 1px solid rgba(255,255,255,.09);
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
-      color: white;
-      box-shadow: 0 14px 40px rgba(124,58,237,.35);
-    }
-    .btn-secondary {
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-    }
-
-    .hero-bottom {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .mini-card {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: .25s ease;
-    }
-    .mini-card:hover { transform: translateY(-4px); }
-    .mini-card h3 {
-      margin: 0 0 6px;
-      font-size: 24px;
-    }
-    .mini-card p {
-      margin: 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .hero-side {
-      border-radius: 34px;
-      padding: 26px;
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 18px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-side::before {
-      content: "";
-      position: absolute;
-      inset: auto -60px -60px auto;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(6,182,212,.24), transparent 72%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    .profile-photo-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 6px;
-    }
-    .profile-photo-ring {
-      width: 210px;
-      height: 210px;
-      border-radius: 32px;
-      padding: 4px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
-      animation: floatPhoto 5s ease-in-out infinite;
-    }
-    .profile-photo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 28px;
-      background: linear-gradient(135deg, rgba(124,58,237,.3), rgba(6,182,212,.2));
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .photo-badge {
-      position: absolute;
-      right: 14px;
-      bottom: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      color: #d7ffea;
-      background: rgba(34,197,94,.12);
-      border: 1px solid rgba(34,197,94,.25);
-      backdrop-filter: blur(10px);
-    }
-    .profile-name h2 {
-      margin: 0 0 6px;
-      font-size: 26px;
-      text-align: center;
-    }
-    .profile-name p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-    }
-    .social-row {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .social-btn {
-      min-width: 140px;
-      padding: 12px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      font-weight: 700;
-      text-align: center;
-      transition: .25s ease;
-    }
-    .social-btn:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,.08);
-    }
-    .contact-list {
-      display: grid;
-      gap: 12px;
-    }
-    .contact-item {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .contact-item small {
-      display: block;
-      color: var(--muted);
-      margin-bottom: 4px;
-      font-size: 12px;
-    }
-    .contact-item strong {
-      font-size: 15px;
-      word-break: break-word;
-    }
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    .tag {
-      font-size: 12px;
-      font-weight: 700;
-      color: #e8edff;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-    .section-title {
-      font-size: clamp(28px, 4vw, 44px);
-      margin: 0 0 10px;
-      letter-spacing: -.04em;
-    }
-    .section-subtitle {
-      margin: 0;
-      max-width: 720px;
-      color: var(--muted);
-    }
-
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-    .card {
-      border-radius: 26px;
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
-      transition: .25s ease;
-    }
-    .card:hover { transform: translateY(-4px); }
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 22px;
-      letter-spacing: -.02em;
-    }
-    .card p { color: var(--muted); }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .chip {
-      padding: 11px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      color: #edf1ff;
-    }
-
-    .skill-bars {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px;
-    }
-    .skill-bar {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .skill-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .skill-top span:last-child {
-      color: #b8c6ff;
-    }
-    .bar-track {
-      width: 100%;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      overflow: hidden;
-      position: relative;
-    }
-    .bar-fill {
-      height: 100%;
-      width: 0;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
-      box-shadow: 0 0 20px rgba(124,58,237,.35);
-      animation: growBar 2.2s ease forwards;
-    }
-    .bar-fill.delay-1 { animation-delay: .15s; }
-    .bar-fill.delay-2 { animation-delay: .3s; }
-    .bar-fill.delay-3 { animation-delay: .45s; }
-    .bar-fill.delay-4 { animation-delay: .6s; }
-
-    ul.clean {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-    ul.clean li { margin-bottom: 12px; }
-
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-    .timeline-item {
-      padding: 22px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .timeline-item small {
-      display: inline-block;
-      margin-bottom: 8px;
-      color: #8be9ff;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .timeline-item h4 {
-      margin: 0 0 8px;
-      font-size: 20px;
-    }
-    .timeline-item p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .project-card {
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .project-top span {
-      display: inline-flex;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      color: #dbe5ff;
-      margin-bottom: 16px;
-    }
-    .project-card h3 { font-size: 24px; }
-    .project-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-top: 18px;
-      color: #dbe5ff;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .split-highlight {
-      border-radius: 30px;
-      padding: 34px;
-      background:
-        linear-gradient(135deg, rgba(124,58,237,.18), rgba(6,182,212,.12)),
-        rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.1);
-    }
-
-    .contact-cta {
-      text-align: center;
-      padding: 42px 24px;
-      border-radius: 32px;
-      background:
-        radial-gradient(circle at top, rgba(124,58,237,.22), transparent 45%),
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow: var(--shadow);
-    }
-    .contact-cta p {
-      max-width: 720px;
-      margin: 0 auto 24px;
-      color: var(--muted);
-    }
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .footer {
-      padding: 28px 0 42px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 14px;
-    }
-
-    @keyframes floatBlob {
-      0%, 100% { transform: translateY(0px) translateX(0px); }
-      50% { transform: translateY(-18px) translateX(8px); }
-    }
-    @keyframes floatPhoto {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-    @keyframes blink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-    @keyframes growBar {
-      from { width: 0; }
-      to { width: var(--target); }
-    }
-
-    @media (max-width: 980px) {
-      .hero-wrap, .grid-2, .grid-3 {
-        grid-template-columns: 1fr;
-      }
-      .hero-main, .hero-side, .card, .contact-cta { padding: 24px; }
-      .hero-bottom { grid-template-columns: 1fr; }
-      .section { padding: 74px 0; }
-      .section-head { align-items: start; flex-direction: column; }
-    }
-
-    @media (max-width: 620px) {
-      .nav-inner { min-height: 70px; }
-      .nav-links { display: none; }
-      .hero { padding-top: 26px; }
-      .hero h1 { font-size: 42px; }
-      .btn, .social-btn { width: 100%; }
-      .hero-actions, .contact-links, .social-row { flex-direction: column; }
-      .profile-photo-ring {
-        width: 180px;
-        height: 180px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="floating-shape shape-1"></div>
-  <div class="floating-shape shape-2"></div>
-  <div class="floating-shape shape-3"></div>
-
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a href="#home" class="brand">VIDHYASHREE</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <header class="hero" id="home">
-    <div class="container hero-wrap">
-      <div class="hero-main glass">
-        <div class="eyebrow">Open to Work • QA • Testing • IT Support</div>
-        <h1>Building a <span class="gradient">modern tech career</span><br>with testing, support, and problem-solving skills.</h1>
-
-        <div class="typing-line">
-          I am a <span class="typing-text" id="typingText"></span><span class="cursor">|</span>
-        </div>
-
-        <p>
-          Hi, I’m Vidhyashree R — a fresher with hands-on exposure in manual testing, automation testing basics, SQL, Java, and IT hardware & networking. I’m looking for opportunities where I can learn fast, contribute with discipline, and grow into a strong software professional.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Hire Me</a>
-          <a class="btn btn-secondary" href="mailto:shreevidshree@gmail.com">Email Me</a>
-          <a class="btn btn-secondary" href="resume.pdf" download>Download Resume</a>
-        </div>
-
-        <div class="hero-bottom">
-          <div class="mini-card">
-            <h3>3+</h3>
-            <p>Project exposures in real testing and workflow validation</p>
-          </div>
-          <div class="mini-card">
-            <h3>5+</h3>
-            <p>Core technical areas across QA, SQL, Java, hardware and networking</p>
-          </div>
-          <div class="mini-card">
-            <h3>2025</h3>
-            <p>Recent technical training in software testing and IT troubleshooting</p>
-          </div>
-        </div>
-      </div>
-
-      <aside class="hero-side glass">
-        <div class="profile-photo-wrap">
-          <div class="profile-photo-ring">
-            <img class="profile-photo" src="profile.jpg" alt="Vidhyashree profile photo" />
-          </div>
-          <div class="photo-badge">Available for roles</div>
-        </div>
-
-        <div class="profile-name">
-          <h2>Vidhyashree R</h2>
-          <p>Software Testing • QA • IT Support • Hardware & Networking</p>
-        </div>
-
-        <div class="social-row">
-          <a class="social-btn" href="https://www.linkedin.com/in/vidhyashree23" target="_blank">💼 LinkedIn</a>
-          <a class="social-btn" href="https://github.com/shreevidshree-ctrl" target="_blank">💻 GitHub</a>
-        </div>
-
-        <div class="contact-list">
-          <div class="contact-item">
-            <small>Email</small>
-            <strong>shreevidshree@gmail.com</strong>
-          </div>
-          <div class="contact-item">
-            <small>Phone</small>
-            <strong>+91 93423 95879</strong>
-          </div>
-          <div class="contact-item">
-            <small>Location</small>
-            <strong>Karur, Tamil Nadu</strong>
-          </div>
-          <div class="contact-item">
-            <small>Languages</small>
-            <strong>English, Tamil</strong>
-          </div>
-        </div>
-
-        <div class="tag-row">
-          <span class="tag">Manual Testing</span>
-          <span class="tag">SQL</span>
-          <span class="tag">Java</span>
-          <span class="tag">Networking</span>
-        </div>
-      </aside>
-    </div>
-  </header>
-
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">About Me</h2>
-          <p class="section-subtitle">A fresher profile presented in a modern portfolio style with clear strengths, clean sections, and recruiter-friendly content.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card glass">
-          <h3>Career Objective</h3>
-          <p>
-            Seeking a challenging role in a reputed organization where I can apply my learning, improve my practical skills, expand my technical knowledge, and contribute meaningfully to team and organizational growth.
-          </p>
-        </div>
-
-        <div class="card glass">
-          <h3>Core Strengths</h3>
-          <div class="chips">
-            <span class="chip">Manual Testing</span>
-            <span class="chip">Selenium Basics</span>
-            <span class="chip">SQL Queries</span>
-            <span class="chip">Java Basics</span>
-            <span class="chip">IT Support</span>
-            <span class="chip">Troubleshooting</span>
-            <span class="chip">Bug Reporting</span>
-            <span class="chip">Networking Basics</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="skills">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Technical Skills</h2>
-          <p class="section-subtitle">A cleaner and more trendy showcase with spotlight cards and modern tags.</p>
-        </div>
-      </div>
-
-      <style>
         .skills-showcase {
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
           gap: 22px;
         }
         .skills-spotlight {
-          border-radius: 28px;
-          padding: 30px;
-          background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(6,182,212,.12)), rgba(255,255,255,.04);
-          border: 1px solid rgba(255,255,255,.10);
+          border-radius: 18px;
+          padding: 28px;
+          background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.98));
+          border: 1px solid rgba(15,23,42,.08);
           position: relative;
           overflow: hidden;
         }
@@ -794,11 +29,11 @@
           width: 180px;
           height: 180px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(236,72,153,.22), transparent 70%);
+          background: radial-gradient(circle, rgba(37,99,235,.08), transparent 70%);
         }
         .skills-spotlight h3 {
           margin: 0 0 10px;
-          font-size: 26px;
+          font-size: 24px;
         }
         .skills-spotlight p {
           color: var(--muted);
@@ -811,27 +46,28 @@
           gap: 12px;
         }
         .skill-badge {
-          padding: 12px 16px;
-          border-radius: 16px;
-          background: rgba(255,255,255,.06);
-          border: 1px solid rgba(255,255,255,.08);
+          padding: 10px 14px;
+          border-radius: 12px;
+          background: #ffffff;
+          border: 1px solid rgba(15,23,42,.08);
           font-weight: 700;
-          color: #eef2ff;
-          box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+          color: #0f172a;
+          box-shadow: none;
         }
         .skill-panels {
           display: grid;
           gap: 18px;
         }
         .skill-panel {
-          border-radius: 24px;
-          padding: 24px;
-          background: rgba(255,255,255,.04);
-          border: 1px solid rgba(255,255,255,.08);
+          border-radius: 16px;
+          padding: 22px;
+          background: #ffffff;
+          border: 1px solid rgba(15,23,42,.08);
           transition: .25s ease;
         }
         .skill-panel:hover {
-          transform: translateY(-4px);
+          transform: translateY(-2px);
+          border-color: rgba(37,99,235,.16);
         }
         .skill-panel h3 {
           margin: 0 0 12px;
@@ -843,13 +79,13 @@
           gap: 10px;
         }
         .skill-tag {
-          padding: 10px 14px;
+          padding: 9px 12px;
           border-radius: 999px;
-          font-size: 13px;
+          font-size: 12px;
           font-weight: 700;
-          background: rgba(255,255,255,.05);
-          border: 1px solid rgba(255,255,255,.08);
-          color: #dfe7ff;
+          background: #f8fafc;
+          border: 1px solid rgba(15,23,42,.07);
+          color: #334155;
         }
         .skills-mini-grid {
           display: grid;
@@ -858,14 +94,14 @@
           margin-top: 22px;
         }
         .skills-mini-card {
-          border-radius: 22px;
-          padding: 22px;
-          background: rgba(255,255,255,.04);
-          border: 1px solid rgba(255,255,255,.08);
+          border-radius: 16px;
+          padding: 20px;
+          background: #ffffff;
+          border: 1px solid rgba(15,23,42,.08);
         }
         .skills-mini-card h4 {
           margin: 0 0 12px;
-          font-size: 18px;
+          font-size: 17px;
         }
         .skills-mini-card ul {
           margin: 0;
@@ -979,7 +215,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">Education</h2>
-          <p class="section-subtitle">Academic milestones shown in a cleaner, more trendy timeline layout.</p>
+          <p class="section-subtitle">Academic milestones presented in a cleaner, more corporate timeline format.</p>
         </div>
       </div>
 
@@ -1008,7 +244,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">Projects</h2>
-          <p class="section-subtitle">Highlighted in a card-based modern style to look more like current portfolio websites.</p>
+          <p class="section-subtitle">Projects presented in a more structured, professional card layout.</p>
         </div>
       </div>
 
@@ -1058,7 +294,7 @@
         <div class="section-head">
           <div>
             <h2 class="section-title">Certifications & Achievements</h2>
-            <p class="section-subtitle">Training, workshops and participation details displayed in a more premium-looking section.</p>
+            <p class="section-subtitle">Training, workshops, and achievements presented in a clean professional section.</p>
           </div>
         </div>
 
