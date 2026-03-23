@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidhyashree R | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255,255,255,0.06);
+      --text: #eef2ff;
+      --muted: #b7c0e0;
+      --accent: #7c93ff;
+      --accent-2: #59d0ff;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 20px 50px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,147,255,.20), transparent 30%),
+        radial-gradient(circle at top right, rgba(89,208,255,.16), transparent 28%),
+        linear-gradient(180deg, #08101f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .section { padding: 72px 0; }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      margin: 0 0 12px;
+      letter-spacing: -.02em;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin: 0 0 28px;
+      max-width: 720px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(8,16,31,.65);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .04em;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 88px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-card, .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(124,147,255,0.15);
+      color: #d7deff;
+      font-size: 13px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(124,147,255,0.22);
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 62px);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -.04em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0 0 24px;
+      max-width: 650px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .stat h3 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+
+    .stat p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .profile-card {
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(124,147,255,.9), rgba(89,208,255,.9));
+      display: grid;
+      place-items: center;
+      font-size: 42px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .profile-item strong {
+      font-size: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card { padding: 28px; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #e7ebff;
+      font-size: 14px;
+    }
+
+    .timeline-item {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .timeline-item small {
+      color: var(--accent-2);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h4 {
+      margin: 8px 0 6px;
+      font-size: 18px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .project p, .list p, .card p {
+      color: var(--muted);
+    }
+
+    ul.clean {
+      padding-left: 18px;
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    ul.clean li {
+      margin-bottom: 10px;
+    }
+
+    .contact-box {
+      text-align: center;
+      padding: 36px;
+      background: linear-gradient(180deg, rgba(124,147,255,.12), rgba(89,208,255,.06));
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .footer {
+      padding: 28px 0 46px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid, .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">VIDHYASHREE</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-card">
+        <div class="eyebrow">Open to Work • Software Testing • IT Support</div>
+        <h1>Hi, I'm Vidhyashree R</h1>
+        <p>
+          Fresher with hands-on exposure in manual testing, automation testing basics, SQL, Java,
+          and IT hardware & networking. I’m looking for opportunities where I can learn quickly,
+          contribute effectively, and grow into a strong technology professional.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Contact Me</a>
+          <a class="btn" href="mailto:shreevidshree@gmail.com">Email Resume</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <h3>3+</h3>
+            <p>Project exposures in testing and application workflows</p>
+          </div>
+          <div class="stat">
+            <h3>5+</h3>
+            <p>Core technical skill areas across testing, SQL, Java, and hardware</p>
+          </div>
+          <div class="stat">
+            <h3>2025</h3>
+            <p>Latest training in software testing and IT hardware & networking</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-card hero-card">
+        <div class="avatar">VR</div>
+
+        <div class="profile-item">
+          <small>Email</small>
+          <strong>shreevidshree@gmail.com</strong>
+        </div>
+
+        <div class="profile-item">
+          <small>Phone</small>
+          <strong>+91 93423 95879</strong>
+        </div>
+
+        <div class="profile-item">
+          <small>Location</small>
+          <strong>Karur, Tamil Nadu</strong>
+        </div>
+
+        <div class="profile-item">
+          <small>Languages</small>
+          <strong>English, Tamil</strong>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">
+        I aim to build my career in a reputed organization where I can apply my learning,
+        strengthen my practical skills, and contribute to team growth through dedication,
+        adaptability, and consistent problem solving.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Career Objective</h3>
+          <p>
+            Seeking a challenging position in a reputed organization where I can learn new skills,
+            expand my knowledge, leverage my learning, and contribute meaningfully to organizational growth.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Core Strengths</h3>
+          <div class="chips">
+            <span class="chip">Manual Testing</span>
+            <span class="chip">Selenium Basics</span>
+            <span class="chip">SQL Queries</span>
+            <span class="chip">Java Basics</span>
+            <span class="chip">IT Support</span>
+            <span class="chip">Networking Basics</span>
+            <span class="chip">Troubleshooting</span>
+            <span class="chip">Bug Reporting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">
+        A strong base in software testing, databases, programming, and IT support fundamentals.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Software Testing</h3>
+          <ul class="clean">
+            <li>Good exposure to SDLC and STLC concepts</li>
+            <li>Very good knowledge of Agile methodology</li>
+            <li>Practical knowledge in writing and executing test cases</li>
+            <li>Knowledge of multiple testing types and bug lifecycle</li>
+            <li>Basic Selenium concepts and writing test scripts</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>SQL & Java</h3>
+          <ul class="clean">
+            <li>Knowledge in DBMS and RDBMS concepts</li>
+            <li>Strong understanding of DDL, DML, DCL, TCL, and DQL</li>
+            <li>Good with subqueries and SQL query writing</li>
+            <li>Practiced in Oracle 10g database</li>
+            <li>Java basics including tokens, database concepts, data types, and operators</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>IT Hardware & Networking</h3>
+          <ul class="clean">
+            <li>Desktop, laptop, and printer hardware support</li>
+            <li>Basic networking: TCP/IP, DNS, DHCP, routers, and switches</li>
+            <li>Knowledge of common IT hardware components</li>
+            <li>Strong troubleshooting and problem-solving skills</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Roles & Responsibilities</h3>
+          <ul class="clean">
+            <li>Write test scenarios and test cases</li>
+            <li>Find, assign, and retest bugs after fixes</li>
+            <li>Convert regression test cases to automation test cases</li>
+            <li>Prepare bug reports and test summary reports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <p class="section-subtitle">
+        Academic background with strong performance in electronics and foundational schooling.
+      </p>
+
+      <div class="card">
+        <div class="timeline-item">
+          <small>2022</small>
+          <h4>Bachelor of Electronics — 84%</h4>
+          <p>Seethalakshmi Ramaswami College, Trichy</p>
+        </div>
+
+        <div class="timeline-item">
+          <small>2019</small>
+          <h4>SSLC — 84%</h4>
+          <p>Government Girls Higher Secondary School, Kulithalai</p>
+        </div>
+
+        <div class="timeline-item">
+          <small>2017</small>
+          <h4>HSC — 63.5%</h4>
+          <p>Amala Matric Higher Secondary School, Musiri</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        Hands-on project exposure in application testing, workflow validation, and quality assurance activities.
+      </p>
+
+      <div class="grid-3">
+        <div class="card project">
+          <h3>Asset Management</h3>
+          <p>
+            Tested an asset management web application used to track hardware, software, and licenses,
+            including lifecycle, procurement, inventory, and disposal workflows.
+          </p>
+        </div>
+
+        <div class="card project">
+          <h3>Tailoring Software</h3>
+          <p>
+            Tested a custom software solution for a tailoring shop to manage customer orders,
+            measurements, delivery schedules, and payment flow.
+          </p>
+        </div>
+
+        <div class="card project">
+          <h3>Meesow Automation Testing</h3>
+          <p>
+            Worked on automating test processes for application features including product browsing,
+            transactions, order processing, performance, and user experience validation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="certifications">
+    <div class="container">
+      <h2 class="section-title">Certifications & Activities</h2>
+      <p class="section-subtitle">
+        Training, workshops, and co-curricular participation that strengthened both technical and practical skills.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Certifications</h3>
+          <ul class="clean">
+            <li>Software Testing Certification — QSpiders Chennai (2024–2025)</li>
+            <li>Junior Technician in IT Hardware & Network Troubleshooting — Trichy (2025)</li>
+            <li>PCB Designing Training — 60 Days</li>
+            <li>Short-term Professional Placement Training Programme — 2022</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Workshops & Co-Curricular</h3>
+          <ul class="clean">
+            <li>National Technical Workshop on Maintenance of Electrical and Electronic Equipment</li>
+            <li>Participated in PHYEL Fires-2020</li>
+            <li>Core Certificate — Second Place (2021)</li>
+            <li>Allied Courses Certificate — Second Place (2022)</li>
+            <li>Participated in EXPOSERA-2022</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="card contact-box">
+        <h2 class="section-title" style="margin-bottom:10px;">Let’s Connect</h2>
+        <p class="section-subtitle" style="margin:0 auto;">
+          I’m currently looking for opportunities in Software Testing, QA, IT Support,
+          Hardware & Networking, and entry-level technical roles.
+        </p>
+
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:shreevidshree@gmail.com">shreevidshree@gmail.com</a>
+          <a class="btn" href="tel:+919342395879">+91 93423 95879</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">© 2026 Vidhyashree R • Portfolio Website</div>
+  </footer>
+</body>
+</html>
